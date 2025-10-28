@@ -56,5 +56,5 @@ git clone https://github.com/fadiinsaf/BZTAMI.git
 3. Add transactions, and your data will be saved locally in your browser.
 
 ## 👍 Author
-**Fadi Insaf** – [GitHub](https://github.com/fadiinsaf) | [Email](mailto:fadiinaffff@gmail.com)
+**Fadi Insaf** – [GitHub](https://github.com/fadiinsaf) | [Email](mailto:fadiinafff@gmail.com)
 
