@@ -16,17 +16,15 @@
 
 <body>
 
+    <!-- Header -->
     <header>
-        <div class="d-flex justify-content-around align-items-center"
-            style="height: 30vh; background-color: #3C467B;">
+        <div class="d-flex justify-content-around align-items-center" style=" margin-bottom: 4em; height: 15vh; background-color: #3C467B;">
 
             <div>
                 <img src="images/walletlogo.png" alt="Logo" width="170">
             </div>
 
-            <div>
-                <h1 class="text-success">0$</h1>
-            </div>
+            <div id="wallet-balance" class="text-success display-5">0$</div>
 
             <div class="buttonlogin ">
                 <button type="button" class="btn btn-success">Add Transaction</button>
@@ -34,38 +32,55 @@
         </div>
 
     </header>
+    <!-- Header -->
 
     <div class="container">
 
+        <div class="allcards d-flex justify-content-evenly align-items-center">
+
+            <div class="card bg-success" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title text-center text-white">Total revenue</h5>
+                    <div id="total-revenue" class="display-6 text-center text-white">0$</div>
+                </div>
+            </div>
+
+            <div class="card bg-danger" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title text-center text-white">Total expenses</h5>
+                    <div id="total-expenses" class="display-6 text-center text-white">0$</div>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 
-    <section>
-        <!-- Footer -->
-        <footer class="text-center text-white" style="background-color: #3C467B;">
-            <!-- Grid container -->
-            <div class="container p-4 pb-0">
-                <!-- Section: CTA -->
-                <section class="">
-                    <p class="d-flex justify-content-center align-items-center">
-                        <span class="me-3">Register for free</span>
-                        <button data-mdb-ripple-init type="button" class="btn btn-outline-light btn-rounded">
-                            Sign up!
-                        </button>
-                    </p>
-                </section>
-                <!-- Section: CTA -->
-            </div>
-            <!-- Grid container -->
+    <!-- Footer -->
+    <footer class="text-center text-white" style="background-color: #3C467B; margin-top:12em;">
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+            <!-- Section: CTA -->
+            <section class="">
+                <p class="d-flex justify-content-center align-items-center">
+                    <span class="me-3">Register for free</span>
+                    <button data-mdb-ripple-init type="button" class="btn btn-outline-light btn-rounded">
+                        Sign up!
+                    </button>
+                </p>
+            </section>
+            <!-- Section: CTA -->
+        </div>
+        <!-- Grid container -->
 
-            <!-- Copyright -->
-            <div class="text-center p-3" style="background-color: #50589C;">
-                © 2020 Copyright:
-                <a class="text-white" href="https://github.com/fadiinsaf">FADIINSAF</a>
-            </div>
-            <!-- Copyright -->
-        </footer>
-        <!-- Footer -->
-    </section>
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: #50589C;">
+            © 2025 Copyright:
+            <a class="text-white" href="https://github.com/fadiinsaf">FADIINSAF</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
 
 </body>
 
