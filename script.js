@@ -29,6 +29,41 @@ function videValues() {
   document.getElementById("submit").textContent = "Add Transaction";
 }
 
+function validateWalletBalance(amount, type, editingIndex) {
+  const transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+  
+  let currentBalance = 0;
+  transactions.forEach(transaction => {
+    const transactionAmount = parseFloat(transaction.amount) || 0;
+    if (transaction.type === "income") {
+      currentBalance += transactionAmount;
+    } else {
+      currentBalance -= transactionAmount;
+    }
+  });
+  
+  if (editingIndex !== -1) {
+    const oldTransaction = transactions[editingIndex];
+    const oldAmount = parseFloat(oldTransaction.amount) || 0;
+    if (oldTransaction.type === "income") {
+      currentBalance -= oldAmount;
+    } else {
+      currentBalance += oldAmount;
+    }
+  }
+  
+  const newAmount = parseFloat(amount) || 0;
+  let newBalance = currentBalance;
+  
+  if (type === "income") {
+    newBalance += newAmount;
+  } else {
+    newBalance -= newAmount;
+  }
+  
+  return newBalance >= 0;
+}
+
 const showLocalStorige = () => {
   const data = JSON.parse(localStorage.getItem("transactions")) || [];
   hestorycards.innerHTML = '';
@@ -81,6 +116,14 @@ const showLocalStorige = () => {
   totalExpensesDiv.textContent = `${totalExpenses}$`;
   walletBalanceDiv.textContent = `${walletBalance}$`;
 
+  if (walletBalance < 0) {
+    walletBalanceDiv.classList.remove('text-success');
+    walletBalanceDiv.classList.add('text-danger');
+  } else {
+    walletBalanceDiv.classList.remove('text-danger');
+    walletBalanceDiv.classList.add('text-success');
+  }
+
   overlay.classList.add("d-none");
 };
 
@@ -92,7 +135,15 @@ submit.addEventListener("click", (e) => {
   const type = document.getElementById("type").value;
   const date = document.getElementById("date").value;
 
-  if (!amount || !description || !type || !date) return;
+  if (!amount || !description || !type || !date) {
+    alert("Please fill in all fields!");
+    return;
+  }
+
+  if (!validateWalletBalance(amount, type, editingIndex)) {
+    alert("Error: No enough cash.");
+    return;
+  }
 
   const data = { amount, description, type, date };
   const localData = JSON.parse(localStorage.getItem("transactions")) || [];
