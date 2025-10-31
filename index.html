@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bztami</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
 
     <link rel="icon" type="image/x-icon" href="images/logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -30,7 +29,7 @@
             </div>
 
             <div class="button" style="margin-right: 1em;">
-                <button type="button" class="btn btn-success">Add Transaction</button>
+                <button id="addbutton" type="button" class="btn btn-success">Add Transaction</button>
             </div>
 
         </div>
@@ -45,7 +44,7 @@
 
             <div class="card bg-success" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title text-center text-white">Total revenue</h5>
+                    <h5 id="Total_revenue" class="card-title text-center text-white">Total revenue</h5>
                     <div id="total-revenue" class="display-6 text-center text-white">0$</div>
                 </div>
             </div>
@@ -53,14 +52,14 @@
 
             <div class="card bg-primary" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title text-center text-white">Wallet Balance</h5>
-                    <div id="total-expenses" class="display-6 text-center text-white">0$</div>
+                    <h5 id="Wallet_Balance" class="card-title text-center text-white">Wallet Balance</h5>
+                    <div id="wallet-balance" class="display-6 text-center text-white">0$</div>
                 </div>
             </div>
 
             <div class="card bg-danger" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title text-center text-white">Total expenses</h5>
+                    <h5 id="Total_expenses" class="card-title text-center text-white">Total expenses</h5>
                     <div id="total-expenses" class="display-6 text-center text-white">0$</div>
                 </div>
             </div>
@@ -68,65 +67,81 @@
 
         </div>
 
-        <form class="addtransiction border border-secondary p-5">
+        <div class="hestorytitle text-center" style="color: #50589C; margin-bottom: 4em;">
+            <h2>TRANSACTION HESTORY</h2>
+        </div>
 
-            <div class="d-flex justify-content-between" style="margin-bottom: 2em;">
-                <h3>Add Transaction</h3>
-                <button type="button" class="btn-close" aria-label="Close"></button>
-            </div>
+        <div id="hestorycards" class="d-flex flex-wrap gap-2 justify-content-center align-items-center">
 
-            <div style="margin-bottom: 2em;">
-                <input class="form-control form-control-sm" type="number" placeholder="Amount"
-                    aria-label=".form-control-sm example" min="0" max="100000" required>
-            </div>
+                <div class="card text-bg-success mb-3" id="income" style="max-width: 18rem;">
+                    <div class="card-header text-center"><h5>Type</h5></div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Discription</h5>
+                        <p class="text-center display-6">0$</p>
+                    </div>
+                </div>
+                
+                <div class="card text-bg-danger mb-3" id="expense" style="max-width: 18rem;">
+                    <div class="card-header text-center"><h5>Type</h5></div>
+                    <div class="card-body">
+                        <p class="card-title text-center">Discription</p>
+                        <h4 class="text-center display-6">0$</h4>
+                        <h4 class="text-center display-6">date</h4>
+                    </div>
+                </div>
 
-            <div style="margin-bottom: 2em;">
-                <input class="form-control form-control-sm" type="text" placeholder="Description"
-                    aria-label=".form-control-sm example" required>
-            </div>
+        </div>
 
-            <div>
+        <div id="overlay"
+            class="d-none position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-flex justify-content-center align-items-center">
 
-                <select class="form-select form-select-sm" required aria-label="Small select example" style="margin-bottom: 2em;">
-                    <option disabled selected hidden>type</option>
-                    <option value="income">income</option>
-                    <option value="expense">expense</option>
-                </select>
+            <form class="bg-light addtransiction border border-secondary p-5 z-11" id="addform">
 
-            </div>
+                <div class="d-flex justify-content-between gap-5" style="margin-bottom: 2em;">
+                    <h3>Add Transaction</h3>
+                    <button type="button" class="btn-close align-self-center" aria-label="Close"></button>
+                </div>
 
-            <div style="margin-bottom: 2em;">
-                <input class="form-control form-control-sm" type="date" placeholder="Date"
-                    aria-label=".form-control-sm example" required>
-            </div>
+                <div style="margin-bottom: 2em;">
+                    <input class="form-control form-control-sm" type="number" id="amount" placeholder="Amount"
+                        aria-label=".form-control-sm example" min="0" max="100000" required>
+                </div>
+
+                <div style="margin-bottom: 2em;">
+                    <input class="form-control form-control-sm" type="text" id="description" placeholder="Description"
+                        aria-label=".form-control-sm example" required>
+                </div>
+
+                <div>
+
+                    <select class="form-select form-select-sm"  aria-label="Small select example"
+                        style="margin-bottom: 2em;" id="type" required>
+                        <option value="" selected disabled hidden> Type</option>
+                        <option value="income">income</option>
+                        <option value="expense">expense</option>
+                    </select>
+
+                </div>
+
+                <div style="margin-bottom: 2em;">
+                    <input class="form-control form-control-sm" type="date" placeholder="Date"
+                        aria-label=".form-control-sm example" required id="date">
+                </div>
 
 
-            <div class="col-auto d-flex justify-content-end">
-                <button type="submit" class="btn btn-success mb-3">Add</button>
-            </div>
+                <div class="col-auto d-flex justify-content-end">
+                    <button type="submit" id="submit" class="btn btn-success mb-3">Add</button>
+                </div>
 
-        </form>
+            </form>
 
-
+        </div>
 
     </div>
 
+
     <!-- Footer -->
-    <footer class="text-center text-white" style="background-color: #3C467B; margin-top:12em;">
-        <!-- Grid container -->
-        <div class="container p-4 pb-0">
-            <!-- Section: CTA -->
-            <section class="">
-                <p class="d-flex justify-content-center align-items-center">
-                    <span class="me-3">Register for free</span>
-                    <button data-mdb-ripple-init type="button" class="btn btn-outline-light btn-rounded">
-                        Sign up!
-                    </button>
-                </p>
-            </section>
-            <!-- Section: CTA -->
-        </div>
-        <!-- Grid container -->
+    <footer class="text-center text-white" style="margin-top:12.8em;">
 
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: #50589C;">
@@ -134,9 +149,11 @@
             <a class="text-white" href="https://github.com/fadiinsaf">FADIINSAF</a>
         </div>
         <!-- Copyright -->
+
     </footer>
     <!-- Footer -->
 
+    <script src="script.js"></script>
 </body>
 
 </html>
